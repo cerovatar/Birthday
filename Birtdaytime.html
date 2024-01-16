@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <style>
+	body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9h1McJlIfPqmGZt1ktcOmj4_vE0BXPtrI5w&usqp=CAU');
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.birthday-card {
+    background-color: #DC143C;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+}
+
+h1 {
+    color: #DC143C;
+}
+
+#clock {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+#countdown {
+    display: flex;
+    justify-content: space-around;
+}
+
+.countdown-item {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9h1McJlIfPqmGZt1ktcOmj4_vE0BXPtrI5w&usqp=CAU');
+    color: #DC143C;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    width: 60px;
+}
+</style>
+</head>
+<body>
+<center>
+  <h1>My Birthday</h1>
+  <div id="countdown"></div>
+
+  <script>
+    // Atur tanggal target (tahun, bulan (0-11), hari, jam, menit, detik)
+    var targetDate = new Date('Maret 05 , 2024 00:00:00').getTime();
+
+    // Perbarui hitung mundur setiap 1 detik
+    var countdownInterval = setInterval(function() {
+      var currentDate = new Date().getTime();
+      var timeDifference = targetDate - currentDate;
+
+      var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+
+      // Hentikan hitung mundur jika waktu target telah tercapai
+      if (timeDifference < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById('countdown').innerHTML = 'Waktu target telah tercapai!';
+      }
+    }, 1000);
+  </script>
+</center>
+<center>
+<audio hidden autoplay loop>
+    <source src="https://j.top4top.io/m_28895r1et1.mp3" type="audio/mpeg">
+    Browsermu tidak mendukung tag audio
+  </audio>
+</body>
+</html>
